@@ -4,27 +4,28 @@ import styles from "../../styles/styles";
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setemail } from "../../store/userActions";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const dispatch =useDispatch();
+const navigate =useNavigate();
+const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [visible, setVisible] = useState(false);
   const handleSubmit =async(e)=>{
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:5000/api/v2/user/login", { email, password });
       console.log(response.data);
-          // // Dispatch action to store email in Redux state
-          // dispatch(setemail(email));
-          // // Redirect to profile page after successful login
-          // navigate("/");
+          // Dispatch action to store email in Redux state
+          dispatch(setemail(email));
+          navigate("/");
     } catch (error) {
       console.error("There was an error logging in!", error);
     }
   };
-// const dispatch =useDispatch();
-// const navigate =useNavigate();
+
   
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [visible, setVisible] = useState(false);
+  
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">

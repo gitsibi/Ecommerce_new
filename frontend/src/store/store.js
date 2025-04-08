@@ -1,29 +1,9 @@
-// import { configureStore, createSlice } from "@reduxjs/toolkit";
-
-// const userSlice = createSlice({
-//   name: "user",
-//   initialState: { email: "" },
-//   reducers: {
-//     setEmail: (state, action) => {
-//       state.email = action.payload;
-//     }
-//   }
-// });
-
-// export const { setEmail } = userSlice.actions;
-// export const store = configureStore({
-//   reducer: { user: userSlice.reducer }
-// });
-
-// store.js
 import { configureStore } from '@reduxjs/toolkit';
 
-// 1. Define initial state for user
 const initialUserState = {
     email: '',
 };
 
-// 2. Create the user reducer
 const userReducer = (state = initialUserState, action) => {
     switch (action.type) {
         case 'SET_EMAIL':
@@ -36,10 +16,42 @@ const userReducer = (state = initialUserState, action) => {
     }
 };
 
-// 3. Create and export the store using Redux Toolkit
 export const store = configureStore({
     reducer: {
         user: userReducer,
     },
 });
 
+
+// dispatch({
+//   type: 'SET_EMAIL',
+//   payload: 'sibishree@example.com'
+// });
+
+
+// Example 1: When action is SET_EMAIL
+// action = {
+//   type: 'SET_EMAIL',
+//   payload: 'sibishree@example.com'
+// }
+// This matches case 'SET_EMAIL', so the reducer returns
+
+
+// {
+//   email: 'sibishree@example.com'
+// }
+
+// Example 2: When action is UNKNOWN_ACTION
+
+// action = {
+//   type: 'UNKNOWN_ACTION',
+//   payload: 'something'
+// }
+// This doesn't match any case, so the default part runs
+
+
+// return state;
+
+// {
+//   email: ''
+// } // returns the current state
